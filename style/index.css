@@ -766,13 +766,34 @@ body {
       }
     }
 
-    .radar {
-      width: 40%; /* 원하는 너비로 설정 */
-      /* height: 300px;  원하는 높이로 설정 */
-      display: block;
-      /* margin: 0 auto; */
-      background: transparent;
-      padding: 10px;
+    .feed_th_info {
+      display: flex;
+
+      .radar {
+        width: 40%; /* 원하는 너비로 설정 */
+        /* height: 300px;  원하는 높이로 설정 */
+        display: block;
+        /* margin: 0 auto; */
+        background: transparent;
+        padding: 10px;
+        padding-left: 20px;
+      }
+
+      .compass-container,
+      .message {
+        height: auto;
+        /* margin: 0 auto; */
+        text-align: center;
+      }
+
+      .compass-container {
+        padding-top: 20px;
+        width: 42%;
+      }
+
+      #Spinner {
+        transform-origin: 50% 50%;
+      }
     }
 
     svg {
@@ -802,38 +823,79 @@ body {
       left: 800px;
     }
 
-    #circularVisualizer {
-      width: 40%;
-      padding: 6px;
+    .music-player-container {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
       margin: 0 auto;
-      display: block;
+      padding: 6px;
     }
 
-    .audio-controls {
+    .playlist {
+      width: 40%;
+      /* background-color: rgba(255, 255, 255, 0.7); */
+      border: 1px solid #85a097;
+      padding: 10px;
+      border-radius: 10px;
+      margin-right: 10px;
+
+      h2 {
+        margin-top: 0;
+        margin-bottom: 15px;
+        font-size: 16px;
+        text-align: center;
+        font-family: "AstroSpace";
+        color: #ccc;
+      }
+
+      #playlist-items {
+        list-style-type: none;
+        padding: 0;
+
+        li {
+          padding: 10px;
+          /* margin-bottom: 5px; */
+          cursor: pointer;
+          transition: background-color 0.3s;
+          font-family: "AstroSpace";
+          font-size: 10px;
+          color: #848383;
+
+          &.active {
+            background-color: rgba(133, 160, 151, 0.5);
+            color: #ccc;
+          }
+        }
+      }
+    }
+
+    .player {
+      width: 45%;
       display: flex;
-      justify-content: center;
-      margin-top: 10px;
+      flex-direction: column;
+      align-items: center;
+      margin-right: 10px;
 
-      button {
-        background-color: transparent;
-        color: #bdbdbd;
-        border: none;
-        padding: 10px 2px;
-        margin: 0 5px;
-        font-size: 18px;
-        cursor: pointer;
-        transition: color 0.3s;
+      #circularVisualizer {
+        width: 100%;
+        max-width: 300px;
+        height: auto;
+      }
 
-        &:hover {
-          color: #85a097;
-        }
+      .audio-controls {
+        display: flex;
+        justify-content: center;
+        margin-top: 4px;
 
-        &:active {
-          color: #566862;
-        }
-
-        &.active {
-          color: #85a097;
+        button {
+          padding: 4px;
+          margin: 0 4px;
+          padding: 6px;
+          background-color: rgba(255, 255, 255, 0.7);
+          border: none;
+          border-radius: 50%;
+          cursor: pointer;
+          transition: background-color 0.3s;
         }
       }
     }

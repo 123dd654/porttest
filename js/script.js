@@ -354,43 +354,69 @@ function draw() {
   drawCircle(95, 2, (deg) => true); // 선 굵기를 2로 증가
 }
 
+//나침반
+$(document).ready(function () {
+  var box = $("#Spinner");
+  var container = $(".compass-container");
+  var boxCenter = [
+    container.offset().left + container.width() / 2,
+    container.offset().top + container.height() / 2,
+  ];
+
+  $(document).mousemove(function (e) {
+    var angle =
+      Math.atan2(e.pageX - boxCenter[0], -(e.pageY - boxCenter[1])) *
+      (180 / Math.PI);
+
+    box.css({ "-webkit-transform": "rotate(" + angle + "deg)" });
+    box.css({ "-moz-transform": "rotate(" + angle + "deg)" });
+    box.css({ transform: "rotate(" + angle + "deg)" });
+  });
+});
+
 // 뮤직플레이어
 document.addEventListener("DOMContentLoaded", function () {
   const audioFiles = ["./music/CustomMelody.mp3", "./music/Carmel Quartet.mp3"];
+  const playlist = [{ title: "CustomMelody" }, { title: "Carmel Quartet" }];
   let currentTrack = 0;
   let isPlaying = false;
-  let isRepeating = false;
 
   const audio = new Audio();
   const playBtn = document.getElementById("playBtn");
   const pauseBtn = document.getElementById("pauseBtn");
   const prevBtn = document.getElementById("prevBtn");
   const nextBtn = document.getElementById("nextBtn");
-  const repeatBtn = document.getElementById("repeatBtn");
+  const playlistElement = document.getElementById("playlist-items");
 
   // 캔버스 및 오디오 컨텍스트 설정
   const canvas = document.getElementById("circularVisualizer");
   const ctx = canvas.getContext("2d");
-  const audioContext = new (window.AudioContext || window.webkitAudioContext)();
-  const analyser = audioContext.createAnalyser();
-  analyser.fftSize = 256;
+  let audioContext, analyser, source;
 
-  // 오디오 소스 연결
-  const source = audioContext.createMediaElementSource(audio);
-  source.connect(analyser);
-  analyser.connect(audioContext.destination);
+  function initAudioContext() {
+    if (!audioContext) {
+      audioContext = new (window.AudioContext || window.webkitAudioContext)();
+      analyser = audioContext.createAnalyser();
+      analyser.fftSize = 256;
+      source = audioContext.createMediaElementSource(audio);
+      source.connect(analyser);
+      analyser.connect(audioContext.destination);
+    }
+  }
 
   function loadTrack(trackIndex) {
     audio.src = audioFiles[trackIndex];
     currentTrack = trackIndex;
+    updateActiveTrack();
   }
 
   function playTrack() {
+    initAudioContext();
     audio.play();
     isPlaying = true;
     playBtn.style.display = "none";
     pauseBtn.style.display = "inline-block";
-    visualize(); // 시각화 시작
+    visualize();
   }
 
   function pauseTrack() {
@@ -398,6 +424,27 @@ document.addEventListener("DOMContentLoaded", function () {
     isPlaying = false;
     playBtn.style.display = "inline-block";
     pauseBtn.style.display = "none";
+  }
+
+  function updatePlaylist() {
+    playlistElement.innerHTML = "";
+    playlist.forEach((track, index) => {
+      const li = document.createElement("li");
+      li.textContent = track.title;
+      li.addEventListener("click", () => {
+        loadTrack(index);
+        playTrack();
+      });
+      playlistElement.appendChild(li);
+    });
+  }
+
+  function updateActiveTrack() {
+    const items = playlistElement.getElementsByTagName("li");
+    for (let i = 0; i < items.length; i++) {
+      items[i].classList.remove("active");
+    }
+    items[currentTrack].classList.add("active");
   }
 
   function visualize() {
@@ -440,6 +487,17 @@ document.addEventListener("DOMContentLoaded", function () {
     draw();
   }
 
+  function drawInitialCircle() {
+    const centerX = canvas.width / 2;
+    const centerY = canvas.height / 2;
+    const radius = Math.min(centerX, centerY) - 10;
+
+    ctx.beginPath();
+    ctx.arc(centerX, centerY, radius, 0, 2 * Math.PI);
+    ctx.strokeStyle = "#566862";
+    ctx.stroke();
+  }
+
   playBtn.addEventListener("click", playTrack);
   pauseBtn.addEventListener("click", pauseTrack);
 
@@ -455,21 +513,14 @@ document.addEventListener("DOMContentLoaded", function () {
     if (isPlaying) playTrack();
   });
 
-  repeatBtn.addEventListener("click", function () {
-    isRepeating = !isRepeating;
-    audio.loop = isRepeating;
-    repeatBtn.classList.toggle("active");
-  });
-
   audio.addEventListener("ended", function () {
-    if (!isRepeating) {
-      currentTrack = (currentTrack + 1) % audioFiles.length;
-      loadTrack(currentTrack);
-      playTrack();
-    }
+    currentTrack = (currentTrack + 1) % audioFiles.length;
+    loadTrack(currentTrack);
+    playTrack();
   });
 
   // 초기 설정
+  updatePlaylist();
   loadTrack(currentTrack);
   pauseBtn.style.display = "none";
 
@@ -477,9 +528,11 @@ document.addEventListener("DOMContentLoaded", function () {
   function resizeCanvas() {
     canvas.width = canvas.offsetWidth;
     canvas.height = canvas.offsetWidth; // 정사각형 유지
+    drawInitialCircle();
   }
 
   // 초기 캔버스 크기 설정 및 리사이즈 이벤트 리스너 추가
   resizeCanvas();
   window.addEventListener("resize", resizeCanvas);
+  drawInitialCircle();
 });
