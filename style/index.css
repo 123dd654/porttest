@@ -1,0 +1,841 @@
+@font-face {
+  font-family: "astro";
+  src: url("/style/fonts/astro.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Orbitron";
+  src: url("/style/fonts/Orbitron-VariableFont_wght.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "AstroSpace";
+  src: url("/style/fonts/AstroSpace-eZ2Bg.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "chopsic";
+  src: url("/style/fonts/Chopsic.otf") format("truetype");
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  list-style: none;
+}
+
+body {
+  background-color: #0a090f;
+  height: 100vh;
+  background-size: 20px 20px;
+  background-image: repeating-radial-gradient(
+    rgb(72, 72, 72) 0px,
+    black 2px,
+    black 48px
+  );
+}
+
+#wrap {
+  display: flex;
+  width: 100%;
+  height: auto;
+}
+
+#header {
+  width: 300px;
+  height: 100%;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+
+  /* header_top */
+  .header_top {
+    .top_first {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+
+      .top_first_img {
+        width: 300px;
+        height: auto;
+        position: relative;
+      }
+
+      h1 {
+        position: absolute;
+        top: 0;
+        margin-top: 4px;
+        text-align: center;
+        width: 100%;
+        font-size: 42px;
+        font-family: "chopsic";
+        color: #a5ad89;
+      }
+    }
+
+    .top_second {
+      display: flex;
+      justify-content: center;
+      margin-top: 4px;
+
+      .time-text {
+        font-size: 30px;
+        fill: #66a5b6;
+        font-family: "Orbitron";
+      }
+    }
+
+    .top_third {
+      position: relative;
+      width: 100%;
+
+      .top_third_img {
+        max-width: 100%;
+        height: auto;
+      }
+
+      .top_third_pro {
+        width: 34%;
+        position: absolute;
+        left: 4%;
+        top: 24%;
+        transform: translateY(-50%);
+      }
+
+      .voice {
+        display: flex;
+        align-items: center;
+        position: absolute;
+        bottom: 102%;
+        right: 10%;
+
+        p {
+          color: #85a097;
+          background-color: rgba(53, 70, 71, 0.6);
+          font-size: 10px;
+          padding: 2px 10px;
+        }
+
+        span {
+          color: #85a097;
+          font-size: 10px;
+          margin-left: 6px;
+        }
+      }
+
+      /* 헤더 음성파일 */
+      #visualizer {
+        position: absolute;
+        left: 140px;
+        top: 10px;
+        width: 50%;
+        height: 40px;
+        margin-bottom: 5px;
+      }
+
+      #controls {
+        position: absolute;
+        top: 50px;
+        left: 190px;
+        display: flex;
+        gap: 5px;
+        align-items: center;
+      }
+
+      button {
+        background-color: rgba(0, 0, 0, 0.5);
+        color: white;
+        border: none;
+        padding: 3px 6px;
+        cursor: pointer;
+        font-size: 10px;
+
+        #repeat {
+          font-size: 16px;
+          padding: 2px 4px;
+        }
+      }
+    }
+  }
+
+  /* contents__title */
+  .contents__title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 31px;
+    position: relative;
+
+    .contents_title_img {
+      max-width: 100%;
+      min-height: auto;
+    }
+
+    .cont_title {
+      position: absolute;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      span {
+        color: #bdbdbd;
+        text-align: center;
+        font-size: 10px;
+        font-family: "AstroSpace";
+        background-color: rgba(221, 221, 221, 0.4);
+        padding: 4px 8px;
+      }
+
+      p {
+        margin-left: 6px;
+        color: #bdbdbd;
+        text-align: center;
+        font-size: 10px;
+        font-family: "AstroSpace";
+      }
+    }
+  }
+
+  .header_middle {
+    margin-bottom: 10px;
+
+    .cont01 {
+      display: flex;
+      width: 300px;
+      height: 82px;
+      margin-top: 10px;
+      background-image: url(../img/cont01.svg);
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+
+      .tech {
+        width: 150px;
+        height: 100%;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 2px;
+        font-family: "AstroSpace";
+
+        h2 {
+          color: #85a097;
+          font-size: 16px;
+        }
+
+        p {
+          color: #566862;
+          font-size: 8px;
+        }
+      }
+
+      .Temperature {
+        width: 75px;
+        height: 100%;
+        text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .spaceship {
+        width: 75px;
+        height: 100%;
+        text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    }
+
+    .cont02 {
+      width: 300px;
+      height: 93px;
+      margin-top: 10px;
+      background-image: url(../img/cont02.svg);
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      display: flex;
+
+      .drone_name {
+        width: 50%;
+        height: 93px;
+        text-align: center;
+        align-items: left;
+        justify-content: center;
+        display: flex;
+        flex-direction: column;
+
+        ul {
+          display: flex;
+          gap: 6px;
+          align-items: center;
+          justify-content: flex-start;
+          margin-left: 10px;
+
+          li {
+            list-style: none;
+            font-family: "AstroSpace";
+            font-size: 12px;
+            margin-bottom: 6px;
+
+            &:nth-child(1) {
+              color: #566862;
+              font-size: 12px;
+            }
+
+            &:nth-child(2) {
+              color: #85a097;
+              font-size: 10px;
+            }
+          }
+        }
+      }
+
+      .drone__id {
+        width: 50%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        .drone__id__title {
+          font-family: "AstroSpace";
+          color: #bdbdbd;
+          font-size: 8px;
+          text-align: center;
+          background-color: rgba(221, 221, 221, 0.4);
+          padding: 4px 10px;
+        }
+
+        .drone__explanation {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          margin-top: 6px;
+
+          .drone__item {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+
+            .drone__img {
+              margin-bottom: 6px;
+              margin-left: 6px;
+              margin-right: 6px;
+
+              img {
+                width: 20px;
+              }
+            }
+
+            ul {
+              list-style: none;
+              margin: 0;
+              padding: 0;
+              font-family: "AstroSpace";
+
+              &:nth-child(2) {
+                margin-right: 6px;
+              }
+
+              li:nth-child(1) {
+                color: #85a097;
+                font-size: 2px;
+              }
+
+              li:nth-child(2) {
+                color: #566862;
+                font-size: 4px;
+                margin-top: 1px;
+              }
+
+              li:nth-child(3) {
+                color: #566862;
+                font-size: 2px;
+                margin-top: 1px;
+                line-height: 1.3;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .cont03 {
+      width: 300px;
+      height: 93px;
+      margin-top: 10px;
+      background-image: url(../img/cont03.svg);
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      display: flex;
+      align-items: center;
+      font-family: "AstroSpace";
+
+      .airship_title {
+        width: 40%;
+        margin-left: 10px;
+
+        span {
+          color: #85a097;
+          font-size: 16px;
+        }
+
+        p {
+          color: #566862;
+          font-size: 6px;
+          margin-top: 4px;
+        }
+      }
+
+      .gauges {
+        display: flex;
+        margin-right: 4px;
+
+        .gauge {
+          img {
+            width: 80px;
+
+            &:nth-child(1) {
+              margin-right: -10px;
+              margin-left: -8px;
+              margin-bottom: -4px;
+            }
+          }
+
+          p {
+            font-size: 8px;
+            color: #566862;
+            text-align: center;
+          }
+        }
+      }
+    }
+
+    .cont04 {
+      width: 300px;
+      height: 82px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: "AstroSpace";
+      position: relative;
+      margin-top: 10px;
+      background-image: url(../img/cont04.svg);
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+
+      .radiation_left {
+        width: 50%;
+        height: 60px;
+        position: relative;
+
+        .radiation_text {
+          display: flex;
+          flex-direction: column;
+          position: relative;
+
+          span {
+            font-size: 14px;
+            color: #85a097;
+            margin-left: 10px;
+          }
+        }
+
+        .bars {
+          display: flex;
+          flex-direction: column;
+          justify-content: flex-end;
+          align-items: flex-end;
+          position: absolute;
+          top: 4px;
+          right: 10px;
+
+          .bar {
+            height: 6px;
+            margin: 2px 0;
+            background-color: #687f7c;
+
+            &.bar1 {
+              width: 20px;
+              background-color: #9fc9bb;
+            }
+
+            &.bar2 {
+              width: 40px;
+              background-color: #8fb7aa;
+            }
+
+            &.bar3 {
+              width: 60px;
+              background-color: #709186;
+            }
+
+            &.bar4 {
+              width: 80px;
+              background-color: #566862;
+            }
+
+            &.bar5 {
+              width: 100px;
+              background-color: #6d6d6d;
+            }
+
+            &.bar6 {
+              width: 120px;
+              background-color: #6d6d6d;
+            }
+          }
+        }
+      }
+
+      .radiation_right {
+        width: 50%;
+        display: flex;
+        align-items: center;
+
+        ul {
+          list-style: none;
+          margin-left: 16px;
+          margin-right: 10px;
+
+          li {
+            font-size: 10px;
+            color: #85a097;
+            margin-bottom: 2px;
+
+            span {
+              color: #566862;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .header__bottom {
+    margin-top: 4px;
+
+    .teamPro,
+    .soloPro {
+      height: 50px;
+      border-top: 1px solid #85a097;
+      border-bottom: 1px solid #85a097;
+      color: #bdbdbd;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 25px;
+      font-family: "chopsic";
+      position: relative;
+      overflow: hidden;
+      transition: background-color 0.3s ease;
+
+      &:hover {
+        cursor: pointer;
+        background-color: rgba(133, 160, 151, 0.1);
+      }
+
+      .click-image {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        pointer-events: none;
+      }
+
+      &:hover .click-image {
+        opacity: 1;
+      }
+    }
+
+    .soloPro {
+      margin-top: 2px;
+    }
+  }
+
+  .my_link {
+    display: flex;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+
+    .phone,
+    .git,
+    .comment,
+    .mail {
+      padding: 6% 8%;
+      border: 1px solid #6d6d6d;
+
+      &:hover {
+        border: 1px solid #fff;
+        color: #fff;
+        background-color: rgba(133, 160, 151, 0.6);
+        cursor: pointer;
+      }
+    }
+  }
+
+  .bottom_line {
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+#main {
+  width: calc(100% - 300px - 300px);
+  height: 870px;
+  padding: 10px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+
+  .main_img {
+    width: 90%;
+    max-width: 100%;
+    height: auto;
+  }
+
+  .main_line {
+    width: 90%;
+    position: absolute;
+  }
+
+  .portfoilo_list {
+    position: absolute;
+    bottom: 0;
+    width: 90%;
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+
+    .box {
+      width: 70px;
+      height: 70px;
+      background-color: #8a8a8a;
+      border-radius: 4px;
+    }
+  }
+
+  .mainbottom_line {
+    max-width: 100%;
+    height: auto;
+    position: absolute;
+    bottom: -132px;
+  }
+}
+
+#feeds {
+  width: 300px;
+  height: 100%;
+  padding: 10px;
+
+  .feed_top {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 4px;
+
+    .top_first_img {
+      max-width: 100%;
+      height: auto;
+      position: relative;
+    }
+
+    h1 {
+      position: absolute;
+      top: 0;
+      text-align: center;
+      width: 100%;
+      font-size: 50px;
+      font-family: "chopsic";
+      color: #a5ad89;
+    }
+  }
+
+  .feed_second,
+  .feed_third,
+  .feed_fourth,
+  .feed_fifth {
+    align-items: center;
+    justify-content: center;
+    position: relative;
+
+    .feed_second_info,
+    .feed_third_info,
+    .feed_fourth_info,
+    .feed_fifth_info {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      .feed_secline {
+        max-width: 100%;
+        height: auto;
+        min-height: 31px;
+      }
+
+      .cont_title {
+        position: absolute;
+        display: flex;
+        align-items: center;
+
+        span {
+          color: #bdbdbd;
+          text-align: center;
+          font-size: 10px;
+          font-family: "AstroSpace";
+          background-color: rgba(221, 221, 221, 0.4);
+          padding: 4px 8px;
+        }
+
+        p {
+          margin-left: 6px;
+          color: #bdbdbd;
+          text-align: center;
+          font-size: 10px;
+          font-family: "AstroSpace";
+        }
+      }
+    }
+
+    /* 달력 */
+    .calendar {
+      width: 100%;
+      height: auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 4px;
+
+      table {
+        border-collapse: collapse;
+        width: 90%;
+        text-align: center;
+      }
+
+      th,
+      td {
+        border-bottom: 1px solid #6d6d6d;
+        padding: 6px;
+        color: #bdbdbd;
+        font-family: "Orbitron", sans-serif;
+        font-size: 10px;
+      }
+
+      th {
+        background-color: #0a090f;
+        color: #bdbdbd;
+        /* border-top: 2px solid #6D6D6D; */
+        /* border-bottom: 2px solid #6D6D6D; */
+        font-family: "AstroSpace", sans-serif;
+        font-size: 8px;
+      }
+
+      th[colspan="7"] {
+        background-color: #0a090f;
+        color: #bdbdbd;
+        font-size: 16px;
+        font-family: "chopsic", sans-serif;
+        text-align: left;
+        padding: 10px 0;
+      }
+
+      td.today {
+        background-color: #4a4a4a;
+        color: #ffffff;
+        font-weight: bold;
+      }
+    }
+
+    .radar {
+      width: 40%; /* 원하는 너비로 설정 */
+      /* height: 300px;  원하는 높이로 설정 */
+      display: block;
+      /* margin: 0 auto; */
+      background: transparent;
+      padding: 10px;
+    }
+
+    svg {
+      width: 80%;
+      margin-left: 34px;
+    }
+
+    path {
+      fill: #ccc;
+      cursor: pointer;
+
+      &:hover,
+      &.active {
+        fill: #85a097;
+      }
+
+      &.active:hover {
+        fill: #85a097;
+      }
+    }
+
+    .checkpoint {
+      position: absolute;
+      top: 150px;
+      bottom: 0;
+      right: 0;
+      left: 800px;
+    }
+
+    #circularVisualizer {
+      width: 40%;
+      padding: 6px;
+      margin: 0 auto;
+      display: block;
+    }
+
+    .audio-controls {
+      display: flex;
+      justify-content: center;
+      margin-top: 10px;
+
+      button {
+        background-color: transparent;
+        color: #bdbdbd;
+        border: none;
+        padding: 10px 2px;
+        margin: 0 5px;
+        font-size: 18px;
+        cursor: pointer;
+        transition: color 0.3s;
+
+        &:hover {
+          color: #85a097;
+        }
+
+        &:active {
+          color: #566862;
+        }
+
+        &.active {
+          color: #85a097;
+        }
+      }
+    }
+  }
+}
