@@ -13,6 +13,35 @@ function updateTime() {
 updateTime();
 setInterval(updateTime, 1000);
 
+//로봇 위아래로 움직이기
+document.addEventListener("DOMContentLoaded", function () {
+  const img = document.querySelector(".top_third_pro");
+  let time = 0;
+  const duration = 4; // 애니메이션 한 사이클의 지속 시간 (초)
+  const range = 5; // 움직임의 범위 (%)
+  const basePosition = -25; // 기본 위치 (%)
+
+  img.style.width = "24%";
+  img.style.position = "absolute";
+  img.style.left = "10%";
+  img.style.top = basePosition + "%";
+
+  function animate() {
+    time += 1 / 60; // 60fps 기준
+    if (time > duration) {
+      time = 0;
+    }
+
+    // 사인 함수를 사용하여 부드러운 움직임 생성
+    const position =
+      basePosition + Math.sin((time * Math.PI * 2) / duration) * range;
+    img.style.top = position + "%";
+
+    requestAnimationFrame(animate);
+  }
+
+  animate();
+});
 // 헤더 오디오 작업
 const visualizerCanvas = document.getElementById("visualizer");
 const visualizerCtx = visualizerCanvas.getContext("2d");
@@ -31,6 +60,7 @@ if (visualizerCanvas) {
 
 function initAudio() {
   audioContext = new (window.AudioContext || window.webkitAudioContext)();
+  analyser = audioContext.createAnalyser();
   analyser.fftSize = 2048;
   bufferLength = analyser.frequencyBinCount;
   dataArray = new Uint8Array(bufferLength);
@@ -43,13 +73,15 @@ function initAudio() {
 function drawWaveform() {
   requestAnimationFrame(drawWaveform);
 
-  if (audioContext) {
-    analyser.getByteTimeDomainData(dataArray);
-  } else {
-    for (let i = 0; i < bufferLength; i++) {
-      dataArray[i] = 128;
+  if (!analyser) {
+    // If analyser is not defined, initialize it
+    if (!audioContext) {
+      initAudio();
     }
+    return;
   }
+
+  analyser.getByteTimeDomainData(dataArray);
 
   visualizerCtx.fillStyle = "rgb(0, 0, 0)";
   visualizerCtx.fillRect(0, 0, visualizerCanvas.width, visualizerCanvas.height);
@@ -78,11 +110,7 @@ function drawWaveform() {
   visualizerCtx.stroke();
 }
 
-if (bufferLength === undefined) {
-  bufferLength = 1024;
-}
-dataArray = new Uint8Array(bufferLength).fill(128);
-
+// Start the waveform drawing
 drawWaveform();
 
 playPauseBtn.addEventListener("click", () => {
@@ -536,3 +564,25 @@ document.addEventListener("DOMContentLoaded", function () {
   window.addEventListener("resize", resizeCanvas);
   drawInitialCircle();
 });
+
+//메인이미지 업로드
+document.addEventListener("DOMContentLoaded", function () {
+  const boxes = document.querySelectorAll(".box");
+  boxes.forEach((box) => {
+    box.addEventListener("click", function () {
+      changeMainImage(box);
+    });
+  });
+});
+
+function changeMainImage(element) {
+  var mainImg = document.getElementById("mainImg");
+  var imageUrl = element.getAttribute("data-image-url");
+
+  // 미리 이미지 로드
+  var img = new Image();
+  img.onload = function () {
+    mainImg.src = this.src;
+  };
+  img.src = imageUrl;
+}
