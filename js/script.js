@@ -42,6 +42,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   animate();
 });
+
 // 헤더 오디오 작업
 const visualizerCanvas = document.getElementById("visualizer");
 const visualizerCtx = visualizerCanvas.getContext("2d");

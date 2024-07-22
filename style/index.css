@@ -103,15 +103,28 @@ body {
         position: absolute;
         top: 45px;
         left: 98px;
-        z-index: 100;
+        z-index: 10;
       }
 
       .header_comm_info {
+        width: 162px;
+        height: 60px;
         position: absolute;
-        top: 0;
-        right: 0;
+        top: 70px;
+        right: -10px;
+        z-index: 12;
+        font-family: "AstroSpace";
+        cursor: pointer;
+        background-color: #000;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: 1px solid #85a097;
+        border-radius: 3px;
+
         p {
-          color: #fff;
+          color: #85a097;
+          font-size: 24px;
         }
       }
 
@@ -153,6 +166,7 @@ body {
         display: flex;
         gap: 5px;
         align-items: center;
+        z-index: 100;
       }
 
       button {
